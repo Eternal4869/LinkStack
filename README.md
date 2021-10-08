@@ -1,2 +1,3 @@
 # LinkStack
-LinkStack of data structure.
+数据结构的链式栈
+大部分按照书上内容编写
