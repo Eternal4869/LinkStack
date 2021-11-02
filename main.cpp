@@ -1,3 +1,9 @@
+/*
+ * @Author: Eternal4869 
+ * @Date: 2021-11-02 14:26:01 
+ * @Last Modified by:   Eternal4869 
+ * @Last Modified time: 2021-11-02 14:26:01 
+ */
 #include <iostream>
 using namespace std;
 
@@ -98,7 +104,6 @@ bool LinkStack<Elem>::Pop(Elem &e)
 {
     if (Empty()) //如果栈空，则不可操作
     {
-        cout << "Failed to pop." << endl;
         return false;
     }
     else //栈非空
@@ -108,7 +113,6 @@ bool LinkStack<Elem>::Pop(Elem &e)
         top = old_top->next;
         delete old_top;
         count--;
-        cout << "Successful to pop." << endl;
         return true;
     }
 }
@@ -133,14 +137,12 @@ bool LinkStack<Elem>::Push(const Elem &e)
     Node<Elem> *newTop = new Node<Elem>(e, top); //创建新栈顶指针
     if (newTop == nullptr)                       //动态内存耗尽
     {
-        cout << "Failed to push." << endl;
         return false;
     }
     else
     {
         top = newTop;
         count++;
-        cout << "Successful to push." << endl;
         return true;
     }
 }
@@ -168,14 +170,25 @@ LinkStack<Elem>::LinkStack(const LinkStack<Elem> &copy)
     }
 }
 
-
-//测试用例
 int main()
 {
     LinkStack<int> ls1;
-    ls1.Push(1);
-    auto a = ls1.Length();
-    cout << a << endl;
+    cout << "Please enter integers : " << endl;
+    int tmp, t;
+    cin >> tmp;
+    ls1.Push(tmp);
+    cout << "Please enter integers : " << endl;
+    cin >> tmp;
+    ls1.Top(t);
+    while (tmp > t)
+    {
+        ls1.Push(tmp);
+        cout << "Please enter integers : " << endl;
+        cin >> tmp;
+        ls1.Top(t);
+    }
+    cout << "Stop!It's wrong!" << endl;
+    cout << "Here are the right numbers:" << endl;
     ls1.Traverse();
     return 0;
 }
